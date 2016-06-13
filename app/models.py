@@ -45,9 +45,6 @@ class Role(db.Model):
             db.session.add(role)
         db.session.commit()
 
-    def __repr__(self):
-        return '<Role %r>' % self.name
-
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -164,9 +161,6 @@ class User(UserMixin, db.Model):
         return '{url}/{hash}?s={size}&d={default}&r={rating}'.format(
             url=url, hash=hash, size=size, default=default, rating=rating)
 
-    def __repr__(self):
-        return '<User %r>' % self.username
-
 
 class AnonymousUser(AnonymousUserMixin):
     def can(self, permissions):
@@ -200,6 +194,7 @@ class Post(db.Model):
         target.body_html = bleach.linkify(bleach.clean(markdown(value, output_format='html'), tags=allowed_tags, strip=True))
 
 db.event.listen(Post.body, 'set', Post.on_changed_body)
+
 
 class Comment(db.Model):
     __tablename__ = 'comments'
