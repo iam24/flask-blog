@@ -13,6 +13,7 @@ class Permission:
     COMMENT = 0x02
     WRITE_ARTICLES = 0x04
     MODERATE_COMMENTS = 0x08
+    MODERATE_ARTICLES = 0x10
     ADMINISTER = 0x80
 
 
@@ -185,6 +186,7 @@ class Post(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     body_html = db.Column(db.Text)
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
+    disabled = db.Column(db.Boolean)
 
     @staticmethod
     def on_changed_body(target, value, oldvalue, initiator):

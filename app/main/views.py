@@ -129,6 +129,19 @@ def moderate():
                            pagination=pagination, page=page)
 
 
+@main.route('/moderate_articles')
+@login_required
+@permission_required(Permission.MODERATE_ARTICLES)
+def moderate_articles():
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.order_by(Post.timestamp.desc()).paginate(
+        page, per_page=current_app.config['FLASKY_COMMENTS_PER_PAGE'],
+        error_out=False)
+    posts = pagination.items
+    return render_template('moderate_articles.html', posts=posts,
+                           pagination=pagination, page=page)
+
+
 @main.route('/moderate/enable/<int:id>')
 @login_required
 @permission_required(Permission.MODERATE_COMMENTS)
@@ -148,4 +161,26 @@ def moderate_disable(id):
     comment.disabled = True
     db.session.add(comment)
     return redirect(url_for('.moderate',
+                            page=request.args.get('page', 1, type=int)))
+
+
+@main.route('/moderate_articles/disable/<int:id>')
+@login_required
+@permission_required(Permission.MODERATE_ARTICLES)
+def moderate_articles_disable(id):
+    post = Post.query.get_or_404(id)
+    post.disabled = True
+    db.session.add(post)
+    return redirect(url_for('.moderate_articles',
+                            page=request.args.get('page', 1, type=int)))
+
+
+@main.route('/moderate_articles/enable/<int:id>')
+@login_required
+@permission_required(Permission.MODERATE_ARTICLES)
+def moderate_articles_enable(id):
+    post = Post.query.get_or_404(id)
+    post.disabled = False
+    db.session.add(post)
+    return redirect(url_for('.moderate_articles',
                             page=request.args.get('page', 1, type=int)))

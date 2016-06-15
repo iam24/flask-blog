@@ -26,8 +26,13 @@
       <column name="timestamp" sqlType="DATETIME" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="author_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
       <column name="body_html" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="disabled" sqlType="BOOLEAN" precision="0" scale="-1" nullable="true" jdbcType="4"/>
       <primary-key columns="id),foreign key(author_id"/>
       <foreign-key name="#FAKE_posts_1" columns="author_id" ref-table="users" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="#FAKE_comments_1" table="comments" schema="" catalog="" columns="post_id"/>
+      <exported-key name="#FAKE_comments_1" table="comments" schema="" catalog="" columns="post_id"/>
+      <exported-key name="#FAKE_comments_1" table="comments" schema="" catalog="" columns="post_id"/>
+      <exported-key name="#FAKE_comments_1" table="comments" schema="" catalog="" columns="post_id"/>
       <index name="ix_posts_timestamp" unique="true" columns="timestamp"/>
     </table>
     <table name="roles" schema="" catalog="" type="TABLE">
@@ -36,6 +41,7 @@
       <column name="default" sqlType="BOOLEAN" precision="0" scale="-1" nullable="true" jdbcType="4"/>
       <column name="permissions" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
       <primary-key columns="id),unique (name"/>
+      <exported-key name="#FAKE_users_1" table="users" schema="" catalog="" columns="role_id"/>
       <index name="ix_roles_default" unique="true" columns="default"/>
     </table>
     <table name="users" schema="" catalog="" type="TABLE">
@@ -53,6 +59,8 @@
       <column name="avatar_hash" sqlType="VARCHAR(32)" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <primary-key columns="id),foreign key(role_id"/>
       <foreign-key name="#FAKE_users_1" columns="role_id" ref-table="roles" ref-schema="" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="#FAKE_comments_2" table="comments" schema="" catalog="" columns="author_id"/>
+      <exported-key name="#FAKE_posts_1" table="posts" schema="" catalog="" columns="author_id"/>
       <index name="ix_users_email" unique="true" columns="email"/>
       <index name="ix_users_username" unique="true" columns="username"/>
     </table>

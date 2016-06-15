@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% import "_macros.html" as macros %}
 
-{% block title %}Blog - Comment Moderation{% endblock %}
+{% block title %}Blog - Articles Moderation{% endblock %}
 
 {% block page_content %}
 <div class="page-header">
-    <h1>Comment Moderation</h1>
+    <h1>Articles Moderation</h1>
 </div>
 {% set moderate = True %}
-{% include '_comments.html' %}
+{% include '_posts.html' %}
 {% if pagination %}
 <div class="pagination">
-    {{ macros.pagination_widget(pagination, '.moderate') }}
+    {{ macros.pagination_widget(pagination, '.moderate_articles') }}
 </div>
 {% endif %}
 {% endblock %}
