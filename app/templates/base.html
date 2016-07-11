@@ -26,6 +26,8 @@
                 {% if current_user.is_authenticated %}
                 <li><a href="{{ url_for('main.user', username=current_user.username) }}">Profile</a></li>
                 {% endif %}
+                <li><a href="{{ url_for('main.useless') }}">扯淡的</a></li>
+                <li><a href="{{ url_for('main.useful') }}">有点用的</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if current_user.can(Permission.MODERATE_ARTICLES) %}

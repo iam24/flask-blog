@@ -9,7 +9,6 @@ class Config:
     SQLALCHEMY_RECORD_QUERIES = True
     MAIL_SERVER = 'smtp.163.com'
     # MAIL_PORT = 25
-    MAIL_USE_TLS = True
     MAIL_USERNAME = 'XXXXXXm'
     MAIL_PASSWORD = 'XXXXX'
     FLASKY_MAIL_SUBJECT_PREFIX = '[Flasky]'

@@ -1,6 +1,7 @@
+# coding=utf8
 from flask.ext.wtf import Form
 from wtforms import StringField, TextAreaField, BooleanField, SelectField,\
-    SubmitField
+    SubmitField, RadioField
 from wtforms.validators import Required, Length, Email, Regexp
 from wtforms import ValidationError
 from ..models import Role, User
@@ -48,6 +49,7 @@ class EditProfileAdminForm(Form):
 
 class PostForm(Form):
     body = PageDownField("What's on your mind?", validators=[Required()])
+    type = RadioField('Label', choices=[(0, u'扯淡的'),(1, u'有点用的')], validators=[Required()])
     submit = SubmitField('Submit')
 
 

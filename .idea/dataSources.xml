@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="452264685">
-    <data-source source="LOCAL" name="MySQL - blog@128.199.109.240" uuid="29f058cc-0a44-4cb5-867b-e6e5dde39b6b">
+  <component name="DataSourceManagerImpl" format="xml" hash="3448402246">
+    <data-source source="LOCAL" name="MySQL - blog@128.199.112.159" uuid="b84da6ce-fd6c-49d3-baea-4bbfa4bd97cd">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://128.199.109.240:3306/blog</jdbc-url>
+      <jdbc-url>jdbc:mysql://128.199.112.159:3306/blog</jdbc-url>
       <driver-properties>
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
@@ -13,6 +13,12 @@
         <property name="characterSetResults" value="utf8" />
         <property name="yearIsDateType" value="false" />
       </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="Sqlite (Xerial) - data-dev.sqlite" uuid="13d8a5a4-a36d-4af4-82a5-7b797a81b697">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/data-dev.sqlite</jdbc-url>
     </data-source>
   </component>
 </project>
