@@ -49,7 +49,7 @@ class EditProfileAdminForm(Form):
 
 class PostForm(Form):
     body = PageDownField("What's on your mind?", validators=[Required()])
-    type = RadioField('Label', choices=[(0, u'扯淡的'),(1, u'有点用的')], validators=[Required()])
+    type = RadioField('Label', coerce=int, choices=[(2, u'扯淡的'),(1, u'有点用的')], validators=[Required()])
     submit = SubmitField('Submit')
 
 

@@ -1,3 +1,4 @@
+# coding=utf8
 from flask import render_template, redirect, url_for, abort, flash, request
 from flask.ext.login import login_required, current_user, current_app
 from . import main
@@ -23,6 +24,11 @@ def index():
     return render_template('index.html', form=form, posts=posts, pagination=pagination)
 
 
+@main.route('/test')
+def test():
+    return render_template('test.html')
+
+
 @main.route('/useless')
 def useless():
     form = PostForm()
@@ -33,7 +39,7 @@ def useless():
         db.session.add(post)
         return redirect(url_for('.index'))
     page = request.args.get('page', 1, type=int)
-    pagination = Post.query.filter_by(type=0).order_by(Post.timestamp.desc()).paginate(page, per_page=current_app.config[
+    pagination = Post.query.filter_by(type=2).order_by(Post.timestamp.desc()).paginate(page, per_page=current_app.config[
         'FLASKY_POSTS_PER_PAGE'], error_out=False)
     posts = pagination.items
     return render_template('index.html', form=form, posts=posts, pagination=pagination)
@@ -139,10 +145,12 @@ def edit(id):
     form = PostForm()
     if form.validate_on_submit():
         post.body = form.body.data
+        post.type = form.type.data
         db.session.add(post)
         flash('The post has been updated.')
         return redirect(url_for('.post', id=post.id))
     form.body.data = post.body
+    form.type.data = post.type
     return render_template('edit_post.html', form=form)
 
 

@@ -187,7 +187,7 @@ class Post(db.Model):
     body_html = db.Column(db.Text)
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
     disabled = db.Column(db.Boolean)
-    type = db.Column(db.Integer, default=0)
+    type = db.Column(db.Integer, default=2)
 
     @staticmethod
     def on_changed_body(target, value, oldvalue, initiator):
