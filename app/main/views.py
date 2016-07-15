@@ -29,7 +29,7 @@ def test():
     return render_template('test.html')
 
 
-@main.route('/useless')
+@main.route('/useless', methods=['GET', 'POST'])
 def useless():
     form = PostForm()
     if current_user.can(Permission.WRITE_ARTICLES) and \
@@ -45,7 +45,7 @@ def useless():
     return render_template('index.html', form=form, posts=posts, pagination=pagination)
 
 
-@main.route('/useful')
+@main.route('/useful', methods=['GET', 'POST'])
 def useful():
     form = PostForm()
     if current_user.can(Permission.WRITE_ARTICLES) and \
